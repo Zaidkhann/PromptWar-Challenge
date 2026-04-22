@@ -1,0 +1,14 @@
+node_modules
+.git
+.vscode
+src
+public
+*.md
+.env
+.env.example
+package.json
+package-lock.json
+vite.config.js
+tailwind.config.js
+postcss.config.js
+.eslintrc.cjs
