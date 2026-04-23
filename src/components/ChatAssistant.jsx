@@ -66,7 +66,7 @@ const ChatAssistant = () => {
       try {
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ 
-          model: 'gemini-flash-latest',
+          model: 'gemini-1.5-flash-8b',
           generationConfig: {
             temperature: 0.7,
             topK: 40,
@@ -124,13 +124,16 @@ const ChatAssistant = () => {
       }
     } catch (err) {
       console.error('Gemini API error:', err);
-      let errorMsg = "Sorry, I couldn't process that. Your API key might be invalid or there was a network error.";
+      let errorMsg = `Sorry, I couldn't process that. Error: ${err.message}`;
       
       if (err.message?.includes('API key not valid')) {
+          errorMsg = "Your API key is invalid. Please check it and try again.";
+          // Only kick out on explicitly invalid key
           setIsKeyValid(false);
       } else if (err.message?.includes('429') || err.message?.includes('quota')) {
           errorMsg = "Sorry, this API key has exceeded its usage quota. Please generate a new free key from Google AI Studio (aistudio.google.com).";
-          setIsKeyValid(false);
+      } else if (err.message?.includes('not found') || err.message?.includes('model')) {
+          errorMsg = "The selected model is not available for your API key. Please check your key permissions.";
       }
 
       setMessages((prev) => [
