@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
 import ChatAssistant from '../ChatAssistant';
 
@@ -16,7 +16,6 @@ test('renders ChatAssistant input when key is missing', () => {
 
 test('submits API key and shows chat interface', () => {
   vi.stubEnv('VITE_GEMINI_API_KEY', '');
-  const { fireEvent } = require('@testing-library/react');
   render(<ChatAssistant />);
   
   const input = screen.getByPlaceholderText('Paste your API key here...');

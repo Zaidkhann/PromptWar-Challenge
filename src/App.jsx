@@ -7,6 +7,11 @@ const Checklist = lazy(() => import('./components/Checklist'));
 const ChatAssistant = lazy(() => import('./components/ChatAssistant'));
 import './index.css';
 
+/**
+ * Main Application Component for Vanguard Election Guide.
+ * Implements a split-pane layout with AI Assistant on the left and structured content on the right.
+ * @returns {JSX.Element} The root application component.
+ */
 const App = () => {
   return (
     <div className="h-screen bg-[#0a0a0f] flex flex-col md:flex-row overflow-hidden text-white font-sans">
