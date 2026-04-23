@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Sparkles, Key } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
@@ -265,4 +265,4 @@ const ChatAssistant = () => {
   );
 };
 
-export default ChatAssistant;
+export default memo(ChatAssistant);

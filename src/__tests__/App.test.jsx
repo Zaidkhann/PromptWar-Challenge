@@ -18,3 +18,9 @@ test('renders App layout and title', () => {
   const titles = screen.getAllByText(/VANGUARD/i);
   expect(titles.length).toBeGreaterThan(0);
 });
+
+test('renders main sections', () => {
+  render(<App />);
+  expect(screen.getByText('The Process')).toBeInTheDocument();
+  expect(screen.getByText('Voter Readiness')).toBeInTheDocument();
+});
